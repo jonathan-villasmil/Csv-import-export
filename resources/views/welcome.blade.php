@@ -296,22 +296,18 @@
             const closeModalButton = document.getElementById('closeModalButton')
             const modal = document.getElementById('myModal')
             
-            function openModal(){
+            
                 // Abre el modal cuando se hace clic en el botón
                 openModalButton.addEventListener('click', () => {
                     modal.classList.remove('hidden')
                     modal.classList.add('flex')
                 });
-            }
-            openModal()
-
-            function closeModal(){
+           
                 // Cierra el modal cuando se hace clic en la "X" o fuera del modal
                 closeModalButton.addEventListener('click', () => {
                     modal.classList.add('hidden')
                 });
-            }
-            closeModal()
+            
             
 
         </script>
