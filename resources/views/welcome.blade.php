@@ -278,11 +278,11 @@
         
         <div id="myModal" class="fixed top-0 left-0 w-full h-full items-center justify-center bg-gray-800 bg-opacity-50 hidden">
             <div class="bg-white p-8 rounded shadow-lg">
-                <h2 class="text-2xl mb-4">Import File</h2>
+                <h2 class="text-2xl mb-4">Import CSV File</h2>
                 <form action="{{route('import.store')}}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="file" class="mb-4">
-                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Import</button>
+                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Import Csv</button>
                 </form>
                 <button id="closeModalButton" class="mt-4 text-white hover:bg-red-500 py-2 px-4 rounded bg-red-600">Cerrar</button>
             </div>
@@ -311,5 +311,5 @@
             
 
         </script>
-    </body>
+    </body> 
 </html>

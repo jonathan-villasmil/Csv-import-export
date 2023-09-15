@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 //Routes CSV
-Route::get('/',[CsvController::class, 'index'])->name('index');
+Route::get('/',[CsvController::class, 'index'])->name('welcome');
 // Route::get('/import',[CsvController::class, 'create'])->name('import.create');
 Route::post('/import',[CsvController::class, 'import'])->name('import.store');
 Route::get('/export',[CsvController::class, 'export'])->name('export');
