@@ -212,8 +212,8 @@
                 <button  type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                 New Product
                 </button>
-                <button  id="importButton" type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
-                    <a href="{{route('import.store')}}">Import</a>
+                <button  id="openModalButton" type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border-t border-b border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
+                    Import
                 </button>
                 <button type="button" class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white">
                     <a href="{{route('export')}}">Export</a>
@@ -275,28 +275,44 @@
         {{-- product list table--}}
 
         {{-- Modal --}}
+        
+        <div id="myModal" class="fixed top-0 left-0 w-full h-full items-center justify-center bg-gray-800 bg-opacity-50 hidden">
+            <div class="bg-white p-8 rounded shadow-lg">
+                <h2 class="text-2xl mb-4">Import File</h2>
+                <form action="{{route('import.store')}}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="file" name="file" class="mb-4">
+                    <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Import</button>
+                </form>
+                <button id="closeModalButton" class="mt-4 text-white hover:bg-red-500 py-2 px-4 rounded bg-red-600">Cerrar</button>
+            </div>
+        </div>
+
+
 
         <script>
             // Obtén referencias a los elementos del DOM
-            const openModalButton = document.getElementById('openModalButton');
-            const closeModalButton = document.getElementById('closeModalButton');
-            const modal = document.getElementById('myModal');
+            const openModalButton = document.getElementById('openModalButton')
+            const closeModalButton = document.getElementById('closeModalButton')
+            const modal = document.getElementById('myModal')
+            
+            function openModal(){
+                // Abre el modal cuando se hace clic en el botón
+                openModalButton.addEventListener('click', () => {
+                    modal.classList.remove('hidden')
+                    modal.classList.add('flex')
+                });
+            }
+            openModal()
 
-            // Abre el modal cuando se hace clic en el botón
-            openModalButton.addEventListener('click', () => {
-                modal.style.display = 'block';
-            });
-
-            // Cierra el modal cuando se hace clic en la "X" o fuera del modal
-            closeModalButton.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-
-            window.addEventListener('click', (event) => {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            });
+            function closeModal(){
+                // Cierra el modal cuando se hace clic en la "X" o fuera del modal
+                closeModalButton.addEventListener('click', () => {
+                    modal.classList.add('hidden')
+                });
+            }
+            closeModal()
+            
 
         </script>
     </body>
